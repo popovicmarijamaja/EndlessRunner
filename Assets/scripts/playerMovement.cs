@@ -1,14 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class playerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     //Defining rows
-    private Vector3 rightPos = new Vector3(12, 0, 1);
-    private Vector3 centrePos = new Vector3(12, 0, 0);
-    private Vector3 leftPos = new Vector3(12, 0, -1);
-    // Update is called once per frame
+    private Vector3 rightPos = new (12, 0, 1);
+    private Vector3 centrePos = new (12, 0, 0);
+    private Vector3 leftPos = new (12, 0, -1);
     void Update()
     {
         //Defining in witch row player is moving
@@ -20,7 +17,6 @@ public class playerMovement : MonoBehaviour
         {
             transform.position = centrePos;
         }
-
         if (Input.GetKeyDown(KeyCode.LeftArrow) && transform.position == centrePos)
         {
             transform.position = leftPos;

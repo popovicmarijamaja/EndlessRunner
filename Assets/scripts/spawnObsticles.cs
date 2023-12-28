@@ -1,43 +1,42 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class spawnObsticles : MonoBehaviour
+public class SpawnObsticles : MonoBehaviour
 {
-    public List<GameObject> rock1;
-    public List<GameObject> rock2;
+    [SerializeField] List<GameObject> rockList1;
+    [SerializeField] List<GameObject> rockList2;
     private float randomPosZ;
     private float posX;
-    private float posY = -0.5f;
+    private float posY;
     private int randomIndex;
-    // Start is called before the first frame update
     void Start()
     {
-        spawnRock1();
-        spawnRock2();
+        posY = -0.5f;
+        SpawnRock1();
+        SpawnRock2();
     }
     //Obsticle spawn function for first part of path
-    public void spawnRock1()
+    public void SpawnRock1()
     {
         float[] pos = { -0.5f, 0.5f, 1.7f };
-        for (int i = 0; i < rock1.Count; i++)
+        for (int i = 0; i < rockList1.Count; i++)
         {
             randomIndex = Random.Range(0, 3);
             randomPosZ = pos[randomIndex];
             posX = 0 + (i * -7);
-            rock1[i].transform.localPosition = new Vector3(posX, posY, randomPosZ);
+            rockList1[i].transform.localPosition = new Vector3(posX, posY, randomPosZ);
         }
     }
     //Obsticle spawn function for second part of path
-    public void spawnRock2()
+    public void SpawnRock2()
     {
         float[] pos = { -0.5f, 0.5f, 1.7f };
-        for (int i = 0; i < rock2.Count; i++)
+        for (int i = 0; i < rockList2.Count; i++)
         {
             randomIndex = Random.Range(0, 3);
             randomPosZ = pos[randomIndex];
             posX = 4 + (i * -7);
-            rock2[i].transform.localPosition = new Vector3(posX, posY, randomPosZ);
+            rockList2[i].transform.localPosition = new Vector3(posX, posY, randomPosZ);
         }
     }
 }

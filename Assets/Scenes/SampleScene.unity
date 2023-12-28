@@ -1474,8 +1474,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 705114769057625012}
-        m_TargetAssemblyTypeName: death, Assembly-CSharp
-        m_MethodName: quit
+        m_TargetAssemblyTypeName: Death, Assembly-CSharp
+        m_MethodName: QuitButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3362,8 +3362,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 705114769057625012}
-        m_TargetAssemblyTypeName: death, Assembly-CSharp
-        m_MethodName: back
+        m_TargetAssemblyTypeName: Death, Assembly-CSharp
+        m_MethodName: BackButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4248,8 +4248,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 705114769057625012}
-        m_TargetAssemblyTypeName: death, Assembly-CSharp
-        m_MethodName: quit
+        m_TargetAssemblyTypeName: Death, Assembly-CSharp
+        m_MethodName: QuitButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4458,8 +4458,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 705114769057625012}
-        m_TargetAssemblyTypeName: death, Assembly-CSharp
-        m_MethodName: pause
+        m_TargetAssemblyTypeName: Death, Assembly-CSharp
+        m_MethodName: PauseButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5186,13 +5186,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8198c4dac2eef73408e09c55cf20cb38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coin1:
+  coinList1:
   - {fileID: 8613854283436963778}
   - {fileID: 2105039419}
   - {fileID: 982575835}
   - {fileID: 1083674376}
   - {fileID: 562185304}
-  coin2:
+  coinList2:
   - {fileID: 574294209}
   - {fileID: 384754523}
   - {fileID: 1353453193}
@@ -5428,8 +5428,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 705114769057625012}
-        m_TargetAssemblyTypeName: death, Assembly-CSharp
-        m_MethodName: playAgainButton
+        m_TargetAssemblyTypeName: Death, Assembly-CSharp
+        m_MethodName: YesButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17205,8 +17205,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c158ddc5052e734c9c0314519fd2017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enviroment1: {fileID: 5472962153764365473}
-  enviroment2: {fileID: 5472962151965713993}
+  environment1: {fileID: 5472962153764365473}
+  environment2: {fileID: 5472962151965713993}
   spawnObsticlesManager: {fileID: 3379799276485103303}
   spawnCoinManager: {fileID: 1699347265}
 --- !u!1 &705114769057625008
@@ -17280,10 +17280,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7196d3783eac554e9c701fd3f43725a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enviromentMoving1: {fileID: 5472962153764365473}
-  enviromentMoving2: {fileID: 5472962151965713993}
+  environment1: {fileID: 5472962153764365473}
+  environment2: {fileID: 5472962151965713993}
   youLostMenu: {fileID: 647751522}
-  backToGame: {fileID: 283710444}
+  pauseMenu: {fileID: 283710444}
 --- !u!114 &705114769057625013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17296,10 +17296,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ccf57a059e531b4b892145b6704f7b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: {fileID: 339836680}
+  scoreText: {fileID: 339836680}
   coinSound: {fileID: 1816583208}
-  finalScore: 0
-  pauseOrEndGame: 0
+  IsGameStopped: 0
 --- !u!1 &705114769057625016
 GameObject:
   m_ObjectHideFlags: 0
@@ -63510,13 +63509,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42353c5cea794fe44afaf17545af115e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rock1:
+  rockList1:
   - {fileID: 7369918650050207145}
   - {fileID: 1220597195}
   - {fileID: 627386284}
   - {fileID: 1790294941}
   - {fileID: 1705110111}
-  rock2:
+  rockList2:
   - {fileID: 293574389}
   - {fileID: 229136121}
   - {fileID: 1571444256}

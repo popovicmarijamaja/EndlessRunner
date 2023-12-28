@@ -1,50 +1,46 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class coinCollect : MonoBehaviour
+public class CoinCollect : MonoBehaviour
 {
-    private int numberOfCollectedCoin;
-    public TextMeshProUGUI score;
-    private int scoreMadeByRunning;
-    public AudioSource coinSound;
-    public int finalScore;
-    public bool pauseOrEndGame;
-    // Start is called before the first frame update
+    private int coinScore;
+    [SerializeField] TextMeshProUGUI scoreText;
+    private int runningScore;
+    [SerializeField] AudioSource coinSound;
+    private int totalScore;
+    public bool IsGameStopped;
     void Start()
     {
-        finalScore = 0;
-        scoreMadeByRunning = 0;
-        numberOfCollectedCoin = 0;
-        StartCoroutine(scoreByRunning());
-        pauseOrEndGame = false;
+        totalScore = 0;
+        runningScore = 0;
+        coinScore = 0;
+        StartCoroutine(ScoreByRunning());
+        IsGameStopped = false;
     }
-
-    // Update is called once per frame
     void Update()
     {
         //Final score
-        finalScore = numberOfCollectedCoin + scoreMadeByRunning;
-        score.text = "SCORE: " + finalScore;
+        totalScore = coinScore + runningScore;
+        scoreText.text = "SCORE: " + totalScore;
     }
     private void OnTriggerEnter(Collider other)
     {
         //Score made by collecting coin
-        if (other.gameObject.tag == "coin")
+        if (other.gameObject.CompareTag("coin"))
         {
             other.gameObject.SetActive(false);
             coinSound.Play();
-            numberOfCollectedCoin = numberOfCollectedCoin + 20;
+            coinScore += 20;
         }
     }
     //Score made by running counter
-    public IEnumerator scoreByRunning()
+    public IEnumerator ScoreByRunning()
     {
-        while (pauseOrEndGame == false)
+        while (IsGameStopped == false)
         {
             yield return new WaitForSeconds(0.25f);
-            scoreMadeByRunning = scoreMadeByRunning + 2;
+            runningScore += 2;
         }
     }
 }

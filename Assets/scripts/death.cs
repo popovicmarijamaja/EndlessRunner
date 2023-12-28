@@ -1,67 +1,67 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class death : MonoBehaviour
+public class Death : MonoBehaviour
 {
-    public GameObject enviromentMoving1;
-    public GameObject enviromentMoving2;
-    public GameObject youLostMenu;
+    [SerializeField] GameObject environment1;
+    [SerializeField] GameObject environment2;
+    [SerializeField] GameObject youLostMenu;
     private Animator anim;
-    public GameObject backToGame;
-    private bool death_;
-    // Start is called before the first frame update
+    [SerializeField] GameObject pauseMenu;
+    private bool isDead;
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
     void Start()
     {
-        death_ = false;
-        anim = GetComponent<Animator>();
+        isDead = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         //If player touch front of the rock
-        if (other.gameObject.tag == "rock")
+        if (other.gameObject.CompareTag("rock"))
         {
             youLostMenu.SetActive(true);
             transform.localPosition = new Vector3(transform.localPosition.x, 0, transform.localPosition.z);
-            gameObject.GetComponent<coinCollect>().pauseOrEndGame = true;
+            gameObject.GetComponent<CoinCollect>().IsGameStopped = true;
             anim.SetBool("death", true);
-            death_ = true;
-            enviromentMoving1.gameObject.GetComponent<enviromentMoving>().enabled = false;
-            enviromentMoving2.gameObject.GetComponent<enviromentMoving>().enabled = false;
+            isDead = true;
+            environment1.GetComponent<EnvironmentMoving>().enabled = false;
+            environment2.GetComponent<EnvironmentMoving>().enabled = false;
         }
     }
-    //Play again button function
-    public void playAgainButton()
+    //Start game again, "yes" button function
+    public void YesButton()
     {
         SceneManager.LoadScene("SampleScene");
     }
-    //Pause button function
-    public void pause()
+    public void PauseButton()
     {
-        //Checking if player is not already dead
-        if (death_ == false)
+        if (isDead == false)
         {
-            enviromentMoving1.gameObject.GetComponent<enviromentMoving>().enabled = false;
-            enviromentMoving2.gameObject.GetComponent<enviromentMoving>().enabled = false;
-            gameObject.GetComponent<coinCollect>().pauseOrEndGame = true;
+            environment1.GetComponent<EnvironmentMoving>().enabled = false;
+            environment2.GetComponent<EnvironmentMoving>().enabled = false;
+            gameObject.GetComponent<CoinCollect>().IsGameStopped = true;
             anim.enabled = false;
-            backToGame.gameObject.SetActive(true);
+            pauseMenu.SetActive(true);
         }
     }
-    //Back button function
-    public void back()
+    public void BackButton()
     {
-        enviromentMoving1.gameObject.GetComponent<enviromentMoving>().enabled = true;
-        enviromentMoving2.gameObject.GetComponent<enviromentMoving>().enabled = true;
-        gameObject.GetComponent<coinCollect>().pauseOrEndGame = false;
-        gameObject.GetComponent<coinCollect>().StartCoroutine("scoreByRunning");
+        environment1.GetComponent<EnvironmentMoving>().enabled = true;
+        environment2.GetComponent<EnvironmentMoving>().enabled = true;
+        gameObject.GetComponent<CoinCollect>().IsGameStopped = false;
+        CoinCollect coinCollector = gameObject.GetComponent<CoinCollect>();
+        if (coinCollector != null)
+        {
+            coinCollector.StartCoroutine(coinCollector.ScoreByRunning());
+        }
         anim.enabled = true;
-        backToGame.gameObject.SetActive(false);
+        pauseMenu.SetActive(false);
     }
-    //Quit button function
-    public void quit()
+    public void QuitButton()
     {
         Application.Quit();
     }
