@@ -7,6 +7,8 @@ TagManager:
   - newSection
   - coin
   - rock
+  - Ground
+  - turnEnvironmentOff
   layers:
   - Default
   - TransparentFX

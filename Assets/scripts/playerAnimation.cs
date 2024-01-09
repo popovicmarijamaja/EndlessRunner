@@ -4,30 +4,27 @@ public class PlayerAnimation : MonoBehaviour
 {
     private Animator anim;
     private Rigidbody rb;
-    private float jumpForce;
+    private const float JumpForce = 5;
     private bool isGrounded;
+    private const string GroundTag = "Ground";
+    private const string JumpTriggerParametar = "jump";
     private void Awake()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
     }
-    void Start()
+    private void Update()
     {
-        jumpForce = 5;
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
         {
-            anim.SetTrigger("jump");
-            rb.AddForce(Vector3.up*jumpForce, ForceMode.Impulse);
+            anim.SetTrigger(JumpTriggerParametar);
+            rb.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
             isGrounded = false;
         }
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.name=="Path")
+        if(collision.gameObject.CompareTag(GroundTag))
         {
             isGrounded = true;
         }

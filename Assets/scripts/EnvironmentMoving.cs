@@ -2,9 +2,23 @@ using UnityEngine;
 
 public class EnvironmentMoving : MonoBehaviour
 {
-    void Update()
+    private static float Speed;
+    private const string TurnEnvironmentOffTag = "turnEnvironmentOff";
+    private void Start()
     {
-        //Environment and path are moving
-        transform.position += new Vector3(4, 0, 0) * Time.deltaTime;
+        Speed = 4;
+    }
+    private void Update()
+    {
+        //Environment is moving
+        transform.position += Time.deltaTime * Speed * Vector3.right;
+        Speed += GameManager.SpeedIncreasing * Time.deltaTime;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag(TurnEnvironmentOffTag))
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
