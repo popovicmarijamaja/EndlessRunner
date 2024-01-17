@@ -10,6 +10,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private GameObject youLostMenu;
     [SerializeField] private GameObject mainMenu;
+    public Slider healthSlider;
+
     private void Awake()
     {
         if (Instance == null)
@@ -21,9 +23,10 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void PauseMenu()
+
+    public void PauseMenu(GameState currentState)
     {
-        if (GameManager.Instance.CurrentState == GameManager.GameState.Pause)
+        if (currentState == GameState.Pause)
         {
             pauseMenu.SetActive(true);
         }
@@ -32,17 +35,20 @@ public class UIManager : MonoBehaviour
             pauseMenu.SetActive(false);
         }
     }
+
     public void Play()
     {
         mainMenu.SetActive(false);
     }
-    public void ScoreText()
+
+    public void ScoreText(int totalScore)
     {
-        scoreText.text = "SCORE: " + GameManager.Instance.totalScore;
+        scoreText.text = "SCORE: " + totalScore;
     }
-    public void YouLostMenu()
+
+    public void YouLostMenu(GameState currentState)
     {
-        if (GameManager.Instance.CurrentState == GameManager.GameState.GameOver)
+        if (currentState == GameState.GameOver)
         {
             youLostMenu.SetActive(true);
         }
@@ -52,18 +58,26 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void HealthSlider(float health)
+    {
+        healthSlider.value = health;
+    }
+
     public void PlayButton()
     {
         GameManager.Instance.LoadGameplayScene();
     }
+
     public void QuitButton()
     {
         GameManager.Instance.Quit();
     }
+
     public void PauseButton()
     {
         GameManager.Instance.PauseGame();
     }
+
     public void BackButton()
     {
         GameManager.Instance.Play();

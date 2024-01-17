@@ -4,9 +4,13 @@ using UnityEngine;
 public class ObjectPool : MonoBehaviour
 {
 	public static ObjectPool Instance;
-	public List<GameObject> pooledObjects = new();
-	public const int amountToPool = 3;
+
+    public const int amountToPool = 3;
+	
 	[SerializeField] private GameObject environment;
+
+    public List<GameObject> pooledObjects = new();
+
     private void Awake()
     {
         if (Instance == null)
@@ -14,6 +18,7 @@ public class ObjectPool : MonoBehaviour
             Instance = this;
         }
     }
+
     private void Start()
     {
         for(int i = 0; i < amountToPool; i++)
@@ -23,6 +28,7 @@ public class ObjectPool : MonoBehaviour
             pooledObjects.Add(obj);
         }
     }
+
     public GameObject GetPooledObject()
     {
         for(int i = 0; i < pooledObjects.Count; i++)

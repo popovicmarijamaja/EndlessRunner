@@ -6,9 +6,15 @@ TagManager:
   tags:
   - newSection
   - coin
-  - rock
   - Ground
   - turnEnvironmentOff
+  - magnet
+  - PlayerRoot
+  - obstacle
+  - FxTemporaire
+  - star
+  - mushrooms
+  - healthPack
   layers:
   - Default
   - TransparentFX
